@@ -1,10 +1,9 @@
 module.exports = {
 	server: {
 		command: "node dist/index",
-		port: 3000,
-		launchTimeout: 50000
+		port: 3000
 	},
 	launch: {
-		headless: false
+		headless: process.env.PUPPETEER_HEADLESS !== false
 	}
 }

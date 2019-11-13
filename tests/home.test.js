@@ -4,6 +4,6 @@ describe("The resource /", function() {
 	})
 
 	it("should have a welcome message", async function() {
-		await expect(page).toMatch(`{ message: "Hello, World!" }`)
+		await expect(await page.content()).toMatch("Hello, World!")
 	})
 })

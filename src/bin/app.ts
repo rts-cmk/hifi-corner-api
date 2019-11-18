@@ -2,8 +2,11 @@ import express from "express"
 import { join } from "path"
 import { readdir } from "fs"
 import { log } from "../lib/log"
+import cors from "cors"
 const app = express()
 const router = express.Router()
+
+router.use(cors())
 
 readdir(join(__dirname, "..", "routes"), function(err, files: any) {
 	if (err) {

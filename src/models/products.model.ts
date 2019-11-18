@@ -1,3 +1,4 @@
-import db from "../config/data-storage"
+import firebase from "../config/firebase"
+import "firebase/firestore"
 
-export default db.firestore().collection("products")
+export default firebase.firestore().collection("products")

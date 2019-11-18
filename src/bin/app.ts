@@ -15,7 +15,7 @@ readdir(join(__dirname, "..", "routes"), function(err, files: any) {
 			const module = await import(join(__dirname, "..", "routes", file))
 			module.default(router)
 		} catch (error) {
-			log.error(error)
+			log.error(error.stack)
 		}
 	})
 })

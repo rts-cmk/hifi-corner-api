@@ -4,9 +4,7 @@
   "description": "RESTful Web-API til HiFi-Corner baseret på ExpressJS og Firebase",
   "main": "dist/index.js",
   "scripts": {
-    "start": "run-s start:*",
-    "start:build": "gulp build",
-    "start:start": "node dist/index",
+    "start": "gulp build && node dist/index",
     "dev": "run-p dev:*",
     "dev:build": "gulp dev",
     "dev:nodemon": "nodemon dist/index",

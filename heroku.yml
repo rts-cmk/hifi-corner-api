@@ -1,0 +1,4 @@
+build:
+  web: gulp build
+run:
+  web: node dist/index

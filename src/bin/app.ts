@@ -6,7 +6,9 @@ import cors from "cors"
 const app = express()
 const router = express.Router()
 
+
 router.use(cors())
+router.use(express.static(join(__dirname, "..", "public")))
 
 readdir(join(__dirname, "..", "routes"), function(err, files: any) {
 	if (err) {

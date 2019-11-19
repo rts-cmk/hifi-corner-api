@@ -12,12 +12,23 @@ function watchTypescript() {
 	gulp.watch("src/**/*.ts", { ignoreInitial: false }, typescript)
 }
 
+function publicFolder() {
+	gulp.src("src/public/**/*")
+		.pipe(gulp.dest("dist/public"))
+}
+
+function watchPublicFolder() {
+	gulp.watch("src/public/**/*", { ignoreInitial: false }, publicFolder)
+}
+
 gulp.task("build", function(done) {
 	typescript()
+	publicFolder()
 	done()
 })
 
 gulp.task("dev", function(done) {
 	watchTypescript()
+	watchPublicFolder()
 	done()
 })

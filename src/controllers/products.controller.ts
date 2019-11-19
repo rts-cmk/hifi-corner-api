@@ -16,3 +16,14 @@ export async function getAllProducts(req: e.Request, res: e.Response): Promise<v
 		console.log(error.stack)
 	}
 }
+
+export async function getSingleProduct(req: e.Request, res: e.Response): Promise<void> {
+	try {
+		const response = await Product.where("sku", "==", req.params.sku).get()
+		const result: Array<Record<string, any>> = []
+		response.forEach(item => result.push(item.data()))
+		res.json(result[0])
+	} catch (error) {
+		console.log(error)
+	}
+}

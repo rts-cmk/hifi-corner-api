@@ -6,6 +6,8 @@ export async function getAllProducts(req: e.Request, res: e.Response): Promise<v
 		let response
 		if (req.query.category) {
 			response = await Product.where("category", "==", req.query.category).get()
+		} else if (req.query.make) {
+			response = await Product.where("make", "==", req.query.make).get()
 		} else {
 			response = await Product.get()
 		}

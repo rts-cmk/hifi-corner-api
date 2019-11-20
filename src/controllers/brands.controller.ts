@@ -1,7 +1,7 @@
 import e from "express"
 import Brand from "../models/brands.model"
 
-export async function getAllBrands(req: e.Request, res: e.Response): Promise<void> {
+export async function getAllBrands(req: e.Request, res: e.Response, next: e.NextFunction): Promise<void> {
 	try {
 		const response = await Brand.get()
 		const results: Array<Record<string, any>> = []
@@ -10,6 +10,6 @@ export async function getAllBrands(req: e.Request, res: e.Response): Promise<voi
 		})
 		res.json(Array.from(results))
 	} catch (error) {
-		console.log(error)
+		next(error)
 	}
 }

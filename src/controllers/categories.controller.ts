@@ -1,7 +1,7 @@
 import e from "express"
 import Product from "../models/products.model"
 
-export async function getAllCategories(req: e.Request, res: e.Response): Promise<void> {
+export async function getAllCategories(req: e.Request, res: e.Response, next: e.NextFunction): Promise<void> {
 	try {
 		const response = await Product.get()
 		const results: Set<string> = new Set()
@@ -10,6 +10,6 @@ export async function getAllCategories(req: e.Request, res: e.Response): Promise
 		})
 		res.json(Array.from(results))
 	} catch (error) {
-		console.log(error)
+		next(error)
 	}
 }

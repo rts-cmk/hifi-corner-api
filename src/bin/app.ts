@@ -2,6 +2,7 @@ import express from "express"
 import { join } from "path"
 import { readdir } from "fs"
 import { log } from "../lib/log"
+import Sentry from "../middleware/sentry"
 import cors from "cors"
 const app = express()
 const router = express.Router()
@@ -23,6 +24,12 @@ readdir(join(__dirname, "..", "routes"), function(err, files: any) {
 			log.error(error.stack)
 		}
 	})
+})
+
+router.use(Sentry.Handlers.errorHandler())
+
+router.use(function onError(err: express.ErrorRequestHandler, req: express.Request, res: express.Response, next: express.NextFunction) {
+	res.status(500).end()
 })
 
 app.use(router)

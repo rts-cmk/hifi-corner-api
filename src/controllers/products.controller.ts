@@ -1,7 +1,7 @@
 import e from "express"
 import Product from "../models/products.model"
 
-export async function getAllProducts(req: e.Request, res: e.Response): Promise<void> {
+export async function getAllProducts(req: e.Request, res: e.Response, next: e.NextFunction): Promise<void> {
 	try {
 		let response
 		if (req.query.category) {
@@ -15,17 +15,17 @@ export async function getAllProducts(req: e.Request, res: e.Response): Promise<v
 		response.forEach(item => result.push(item.data()))
 		res.json(result)
 	} catch (error) {
-		console.log(error.stack)
+		next(error.stack)
 	}
 }
 
-export async function getSingleProduct(req: e.Request, res: e.Response): Promise<void> {
+export async function getSingleProduct(req: e.Request, res: e.Response, next: e.NextFunction): Promise<void> {
 	try {
 		const response = await Product.where("sku", "==", req.params.sku).get()
 		const result: Array<Record<string, any>> = []
 		response.forEach(item => result.push(item.data()))
 		res.json(result[0])
 	} catch (error) {
-		console.log(error)
+		next(error)
 	}
 }

@@ -28,8 +28,8 @@ readdir(join(__dirname, "..", "routes"), function(err, files: any) {
 
 router.use(Sentry.Handlers.errorHandler())
 
-router.use(function onError(err: express.ErrorRequestHandler, req: express.Request, res: express.Response, next: express.NextFunction) {
-	res.status(500).end()
+router.use(function onError(err: express.ErrorRequestHandler, req: express.Request, res: any, next: express.NextFunction) {
+	res.status(500).json({ errorId: res.sentry })
 })
 
 app.use(router)

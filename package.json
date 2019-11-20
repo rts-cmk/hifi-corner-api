@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/rts-cmk/hifi-corner-api#readme",
   "dependencies": {
+    "@sentry/node": "^5.9.0",
     "@types/cors": "^2.8.6",
     "@types/express": "^4.17.2",
     "@types/jest": "^24.0.22",

@@ -10,7 +10,7 @@ export default function middlewareCache(req: e.Request, res: e.Response, next: e
 	} else {
 		res.sendResponse = res.send
 		res.send = function(body: string): any {
-			mcache.put(key, body, 20 * 1000)
+			mcache.put(key, body, 120 * 1000)
 			res.sendResponse(body)
 		}
 		next()

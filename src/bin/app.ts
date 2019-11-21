@@ -3,6 +3,7 @@ import { join } from "path"
 import { readdir } from "fs"
 import { log } from "../lib/log"
 import Sentry from "../middleware/sentry"
+import cache from "../middleware/cache"
 import cors from "cors"
 const app = express()
 const router = express.Router()
@@ -10,6 +11,7 @@ const router = express.Router()
 
 router.use(cors())
 router.use(express.static(join(__dirname, "..", "public")))
+router.use(cache)
 
 readdir(join(__dirname, "..", "routes"), function(err, files: any) {
 	if (err) {

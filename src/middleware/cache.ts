@@ -2,8 +2,8 @@ import e from "express"
 import * as mcache from "memory-cache"
 
 export default function middlewareCache(req: e.Request, res: e.Response, next: e.NextFunction): void {
-	let key = "__express__" + req.originalUrl || req.url
-	let cachedBody = mcache.get(key)
+	const key = "__express__" + req.originalUrl || req.url
+	const cachedBody = mcache.get(key)
 	if (cachedBody) {
 		res.send(cachedBody)
 		return

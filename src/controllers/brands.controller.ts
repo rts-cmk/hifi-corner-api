@@ -1,5 +1,6 @@
 import e from "express"
 import Brand from "../models/brands.model"
+import { Brand as v2Brand, Media } from "../models/models"
 
 export async function getAllBrands(req: e.Request, res: e.Response, next: e.NextFunction): Promise<void> {
 	try {

@@ -21,14 +21,36 @@ function watchPublicFolder() {
 	gulp.watch("src/public/**/*", { ignoreInitial: false }, publicFolder)
 }
 
+function dataFolder() {
+	gulp.src("src/data/**/*")
+		.pipe(gulp.dest("dist/data"))
+}
+
+function watchDataFolder() {
+	gulp.watch("src/data/**/*", { ignoreInitial: false }, dataFolder)
+}
+
+function fileFolder() {
+	gulp.src("src/file-bucket/**/*")
+		.pipe(gulp.dest("dist/file-bucket"))
+}
+
+function watchFileFolder() {
+	gulp.watch("src/file-bucket/**/*", { ignoreInitial: false }, fileFolder)
+}
+
 gulp.task("build", function(done) {
 	typescript()
 	publicFolder()
+	dataFolder()
+	fileFolder()
 	done()
 })
 
 gulp.task("dev", function(done) {
 	watchTypescript()
 	watchPublicFolder()
+	watchDataFolder()
+	watchFileFolder()
 	done()
 })

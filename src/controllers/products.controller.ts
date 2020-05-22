@@ -1,5 +1,6 @@
 import e from "express"
 import Product from "../models/products.model"
+import { Product as v2Product, Category, Brand, Media, Specs } from "../models/models"
 
 export async function getAllProducts(req: e.Request, res: e.Response, next: e.NextFunction): Promise<void> {
 	try {
@@ -35,5 +36,36 @@ export async function getSingleProduct(req: e.Request, res: e.Response, next: e.
 		res.json(result[0])
 	} catch (error) {
 		next(error)
+	}
+}
+
+export async function v2getAllProducts(req: e.Request, res: e.Response, next: e.NextFunction): Promise<void> {
+	try {
+		let products = await v2Product.findAll({ include: [Category, Brand, Media, Specs] })
+		// TODO: Format response object
+		res.json(products)
+	} catch (error) {
+		console.error(error)
+		res.status(500).end()
+	}
+}
+
+export async function v2createProduct(req: e.Request, res: e.Response, next: e.NextFunction): Promise<void> {
+	try {
+		let product = await v2Product.create({
+			model: req.fields.model,
+			description: req.fields.description,
+			sku: req.fields.sku,
+			price: req.fields.price,
+			link: req.fields.link,
+			delivery: req.fields.delivery,
+			warranty: req.fields.warranty,
+			instock: req.fields.instock
+		})
+		// TODO: Format response object
+		res.json(product)
+	} catch (error) {
+		console.error(error)
+		res.status(500).end()
 	}
 }
